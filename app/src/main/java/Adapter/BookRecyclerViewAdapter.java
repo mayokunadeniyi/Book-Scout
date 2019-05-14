@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mayokun.bookscout.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     private List<Book> bookList;
     private Context context;
 
-    public BookRecyclerViewAdapter(Context context, List<Book> list){
+    public BookRecyclerViewAdapter(Context context, List<Book> list) {
         this.bookList = list;
         this.context = context;
     }
@@ -27,7 +28,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     @NonNull
     @Override
     public BookRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -38,6 +39,11 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
 
         viewHolder.bookName.setText(book.getBookTitle());
         viewHolder.bookAuthor.setText(book.getBookAuthor());
+
+        Picasso.get()
+                .load(posterLink)
+                .placeholder(R.drawable.bookDefault)
+                .into(viewHolder.bookCover);
 
 
     }
