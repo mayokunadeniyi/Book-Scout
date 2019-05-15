@@ -48,9 +48,11 @@ public class Book implements Serializable {
         this.bookIMDB = bookIMDB;
     }
 
+    //For the Medium book poster
     public String getPoster() {
-        return poster;
+        return "http://covers.openlibrary.org/b/olid/" + bookIMDB + "-M.jpg?default=false";
     }
+
 
     public void setPoster(String poster) {
         this.poster = poster;

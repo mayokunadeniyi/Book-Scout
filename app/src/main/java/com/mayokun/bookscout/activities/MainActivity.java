@@ -2,6 +2,7 @@ package com.mayokun.bookscout.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private BookRecyclerViewAdapter bookRecyclerViewAdapter;
     private List<Book> bookList;
     private RequestQueue queue;
+    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void createPopUp(){
+
     }
 
     public List<Book> getBookList(String searchItem){

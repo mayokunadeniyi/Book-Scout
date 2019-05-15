@@ -2,4 +2,6 @@
     <string name="app_name">Book Scout</string>
     <string name="action_settings">Settings</string>
     <string name="popup_title">Enter Book Name</string>
+    <string name="search_button">Search</string>
+    <string name="search_hint">E.g Harry Potter</string>
 </resources>
