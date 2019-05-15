@@ -1,4 +1,4 @@
-package Adapter;
+package adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import Model.Book;
+import model.Book;
 
 public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerViewAdapter.ViewHolder> {
     private List<Book> bookList;
@@ -42,7 +42,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
 
         Picasso.get()
                 .load(posterLink)
-                .placeholder(R.drawable.bookDefault)
+                .placeholder(R.drawable.bookdefault)
                 .into(viewHolder.bookCover);
 
 
