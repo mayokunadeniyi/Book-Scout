@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mayokun.bookscout.R;
+import com.mayokun.bookscout.activities.BookDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     @Override
     public BookRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view,context);
     }
 
     @Override
@@ -53,18 +55,37 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         return bookList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView bookCover;
         public TextView bookName;
         public TextView bookAuthor;
 
-        public ViewHolder(@NonNull View itemView) {
+
+        public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
+            context = ctx;
 
             bookCover = (ImageView) itemView.findViewById(R.id.bookImageID);
             bookAuthor = (TextView) itemView.findViewById(R.id.bookAuthor);
             bookName = (TextView) itemView.findViewById(R.id.bookTitleID);
+
+            //Set Item view onclick listener
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Book book = bookList.get(getAdapterPosition());
+                    Intent intent = new Intent(ctx, BookDetailActivity.class);
+                    intent.putExtra("Book",Book.class);
+                    ctx.startActivity(intent);
+
+                }
+            });
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 }

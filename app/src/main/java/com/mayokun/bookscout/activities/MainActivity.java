@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -56,22 +58,45 @@ public class MainActivity extends AppCompatActivity {
         bookList = getBookList(search);
 
 
-
-
-
-
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Put Dialog builder here
+                createPopUp();
 
             }
         });
     }
 
     public void createPopUp(){
+        builder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.popup,null);
+        final EditText searchItem = (EditText) view.findViewById(R.id.searchID);
+        Button searchButton = (Button) view.findViewById(R.id.searchbuttonID);
+
+        builder.setView(view);
+        alertDialog = builder.create();
+        alertDialog.show();
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Prefs prefs = new Prefs(MainActivity.this);
+
+                if (!searchItem.getText().toString().isEmpty()){
+
+                    prefs.setSearch(searchItem.getText().toString());
+                    //Clear the book list
+                    bookList.clear();
+                    //get new book list
+                    getBookList(searchItem.getText().toString());
+                }
+                alertDialog.dismiss();
+
+            }
+        });
+
+
 
     }
 

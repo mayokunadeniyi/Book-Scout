@@ -31,7 +31,6 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="2dp"
                 android:textSize="15sp"
-                android:textColor="@color/colorPrimary"
                 android:background="@drawable/input_text_background"
                 android:layout_marginTop="30dp"
                 android:hint="@string/search_hint"
@@ -40,7 +39,7 @@
 
 
             <Button
-                android:id="@+id/save_item_button"
+                android:id="@+id/searchbuttonID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/searchID"
