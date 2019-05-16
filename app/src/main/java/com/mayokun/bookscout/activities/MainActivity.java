@@ -176,16 +176,21 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-            JSONArray authors = jsonObject.getJSONArray("author_name");
-            //Get the length of the author array
-            int numAuthors = authors.length();
+            if (jsonObject.has("author_name")) {
 
-            String[] authorStrings = new String[numAuthors];
+                JSONArray authors = jsonObject.getJSONArray("author_name");
+                //Get the length of the author array
+                int numAuthors = authors.length();
 
-            for (int i = 0; i < numAuthors; i++) {
-                authorStrings[i] = authors.getString(i);
+                String[] authorStrings = new String[numAuthors];
+
+                for (int i = 0; i < numAuthors; i++) {
+                    authorStrings[i] = authors.getString(i);
+                }
+                return TextUtils.join(",", authorStrings);
+            }else {
+                return "N/A";
             }
-            return TextUtils.join(",", authorStrings);
 
         } catch (JSONException e) {
 
