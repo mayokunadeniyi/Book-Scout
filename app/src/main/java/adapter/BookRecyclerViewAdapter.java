@@ -44,7 +44,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
 
         Picasso.get()
                 .load(posterLink)
-                .placeholder(R.drawable.bookdefault)
+                .placeholder(R.drawable.bookdefault).centerCrop()
                 .into(viewHolder.bookCover);
 
 

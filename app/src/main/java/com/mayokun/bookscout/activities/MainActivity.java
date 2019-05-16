@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         queue = Volley.newRequestQueue(this);
 
-//        recyclerView = (RecyclerView) findViewById(R.id.RecyclerViewID);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = (RecyclerView) findViewById(R.id.RecyclerViewID);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Prefs prefs = new Prefs(MainActivity.this);
         String search = prefs.getSearch();
@@ -57,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
         bookList = new ArrayList<>();
 
         bookList = getBookList(search);
+
+        //Passing the bookList into the recyclerViewAdapter
+        bookRecyclerViewAdapter = new BookRecyclerViewAdapter(this, bookList);
+        recyclerView.setAdapter(bookRecyclerViewAdapter);
+        bookRecyclerViewAdapter.notifyDataSetChanged();
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -135,16 +140,16 @@ public class MainActivity extends AppCompatActivity {
                         book.setBookAuthor(getAuthors(bookObj));
 
                         //For the book image: Checking if it has cover_edition_key or edition_key
-                        if (bookObj.has("cover_edition_key")){
+                        if (bookObj.has("cover_edition_key")) {
                             book.setBookIMDB(bookObj.getString("cover_edition_key"));
-                        }else if (bookObj.has("edition_key")){
+                        } else if (bookObj.has("edition_key")) {
                             JSONArray bookImdbArray = bookObj.getJSONArray("edition_key");
                             book.setBookIMDB(bookImdbArray.getString(0));
                         }
 
                         bookList.add(book);
                     }
-//                    bookRecyclerViewAdapter.notifyDataSetChanged();
+                    bookRecyclerViewAdapter.notifyDataSetChanged();
 
 
                 } catch (JSONException e) {
@@ -160,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         queue.add(jsonObjectRequest);
+
         return bookList;
 
 

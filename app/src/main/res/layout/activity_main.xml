@@ -20,9 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
-        android:id="@+id/RecyclerViewID"
-        layout="@layout/content_main" />
+    <include layout="@layout/content_main" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
