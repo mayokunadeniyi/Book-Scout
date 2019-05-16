@@ -76,7 +76,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
                 public void onClick(View v) {
                     Book book = bookList.get(getAdapterPosition());
                     Intent intent = new Intent(ctx, BookDetailActivity.class);
-                    intent.putExtra("Book",Book.class);
+                    intent.putExtra("Book",book);
                     ctx.startActivity(intent);
 
                 }
