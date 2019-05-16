@@ -49,8 +49,13 @@ public class Book implements Serializable {
     }
 
     //For the Medium book poster
-    public String getPoster() {
+    public String getMediumPoster() {
         return "http://covers.openlibrary.org/b/olid/" + bookIMDB + "-M.jpg?default=false";
+    }
+
+    //For the Large book poster
+    public String getLargePoster(){
+        return "http://covers.openlibrary.org/b/olid/" + bookIMDB + "-L.jpg?default=false";
     }
 
 

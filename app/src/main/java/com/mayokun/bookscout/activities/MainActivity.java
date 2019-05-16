@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -68,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void createPopUp(){
+    public void createPopUp() {
         builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.popup,null);
+        View view = getLayoutInflater().inflate(R.layout.popup, null);
         final EditText searchItem = (EditText) view.findViewById(R.id.searchID);
         Button searchButton = (Button) view.findViewById(R.id.searchbuttonID);
 
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Prefs prefs = new Prefs(MainActivity.this);
 
-                if (!searchItem.getText().toString().isEmpty()){
+                if (!searchItem.getText().toString().isEmpty()) {
 
                     prefs.setSearch(searchItem.getText().toString());
                     //Clear the book list
@@ -97,10 +98,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
     }
 
-    public List<Book> getBookList(String searchItem){
+    public List<Book> getBookList(String searchItem) {
 
         //clear the book list
         bookList.clear();
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
 
-                try{
+                try {
                     JSONArray bookArray = response.getJSONArray("docs");
 
 
@@ -120,8 +120,20 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject bookObj = bookArray.getJSONObject(i);
                         //Create a new book instance
                         Book book = new Book();
-                        book.setBookTitle(bookObj.getString("title_suggest"));
-                        book.setBookAuthor(bookObj.getString("author_name"));
+
+                        //Check if bookObj has title
+
+                        if (bookObj.has("title_suggest")) {
+
+                            book.setBookTitle(bookObj.getString("title_suggest"));
+
+                        } else {
+                            book.setBookAuthor("");
+                        }
+
+
+                        //Calling the getAuthors method
+                        book.setBookAuthor(getAuthors(bookObj));
 
                         //book.setPoster(bookObj.getString("")); //TODO: Follow guide in already built example http://covers.openlibrary.org/b/olid/" + openLibraryId + "-M.jpg?default=false";
                         /**
@@ -132,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 //                    bookRecyclerViewAdapter.notifyDataSetChanged();
 
 
-                }catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
@@ -140,13 +152,36 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("Error",error.getMessage());
+                VolleyLog.d("Error", error.getMessage());
             }
         });
 
         queue.add(jsonObjectRequest);
         return bookList;
 
+
+    }
+
+    //This method is to get the authors
+    private static String getAuthors(JSONObject jsonObject) {
+
+        try {
+
+            JSONArray authors = jsonObject.getJSONArray("author_name");
+            //Get the length of the author array
+            int numAuthors = authors.length();
+
+            String[] authorStrings = new String[numAuthors];
+
+            for (int i = 0; i < numAuthors; i++) {
+                authorStrings[i] = authors.getString(i);
+            }
+            return TextUtils.join(",", authorStrings);
+
+        } catch (JSONException e) {
+
+            return "";
+        }
 
     }
 
