@@ -37,7 +37,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull BookRecyclerViewAdapter.ViewHolder viewHolder, int i) {
         Book book = bookList.get(i);
-        String posterLink = book.getPoster();
+        String posterLink = book.getMediumPoster();
 
         viewHolder.bookName.setText(book.getBookTitle());
         viewHolder.bookAuthor.setText(book.getBookAuthor());

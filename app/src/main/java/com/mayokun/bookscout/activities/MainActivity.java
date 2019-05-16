@@ -131,14 +131,17 @@ public class MainActivity extends AppCompatActivity {
                             book.setBookAuthor("");
                         }
 
-
                         //Calling the getAuthors method
                         book.setBookAuthor(getAuthors(bookObj));
 
-                        //book.setPoster(bookObj.getString("")); //TODO: Follow guide in already built example http://covers.openlibrary.org/b/olid/" + openLibraryId + "-M.jpg?default=false";
-                        /**
-                         * Note that the object may have just a poster or cover or edition key
-                         */
+                        //For the book image: Checking if it has cover_edition_key or edition_key
+                        if (bookObj.has("cover_edition_key")){
+                            book.setBookIMDB(bookObj.getString("cover_edition_key"));
+                        }else if (bookObj.has("edition_key")){
+                            JSONArray bookImdbArray = bookObj.getJSONArray("edition_key");
+                            book.setBookIMDB(bookImdbArray.getString(0));
+                        }
+
                         bookList.add(book);
                     }
 //                    bookRecyclerViewAdapter.notifyDataSetChanged();
