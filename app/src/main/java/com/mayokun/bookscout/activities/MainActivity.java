@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return TextUtils.join(",", authorStrings);
             }else {
-                return "N/A";
+                return "Author N/A";
             }
 
         } catch (JSONException e) {

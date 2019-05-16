@@ -6,4 +6,6 @@
     <string name="search_hint">E.g Harry Potter</string>
     <string name="title_activity_book_detail">BookDetailActivity</string>
     <string name="published_by">Published By</string>
+    <string name="publisher_na">Publisher N/A</string>
+    <string name="pages_na">Pages N/A</string>
 </resources>

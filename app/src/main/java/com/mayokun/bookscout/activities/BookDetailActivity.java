@@ -102,7 +102,7 @@ public class BookDetailActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }else {
-                            bookPublisher.setText("Publisher N/A");
+                            bookPublisher.setText(getString(R.string.publisher_na));
                         }
 
                         if (response.has("number_of_pages")){
@@ -112,7 +112,7 @@ public class BookDetailActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }else {
-                            bookPages.setText("Pages N/A");
+                            bookPages.setText(getString(R.string.pages_na));
                         }
 
 

@@ -81,7 +81,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
-                android:text="TextView"
+                android:text="@string/publisher_na"
                 android:textSize="14sp" />
 
             <TextView
@@ -92,7 +92,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-light"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/pages_na" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
