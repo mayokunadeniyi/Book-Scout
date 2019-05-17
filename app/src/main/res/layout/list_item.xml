@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginLeft="3dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_height="match_parent"
         app:cardCornerRadius="5dp">
 
@@ -32,23 +32,38 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/bookImageID"
                 android:text="Book Title"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
-            <TextView
-                android:id="@+id/bookAuthor"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20sp"
-                android:layout_toRightOf="@id/bookImageID"
                 android:layout_below="@id/bookTitleID"
-                android:layout_centerHorizontal="true"
-                android:text="Author:"
-                />
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/bookImageID"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/author"/>
+                <TextView
+                    android:id="@+id/bookAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="12sp"
+                    android:layout_centerHorizontal="true"
+                    android:text="Author Name"
+                    />
+
+            </LinearLayout>
 
         </RelativeLayout>
 
