@@ -1,7 +1,10 @@
 package com.mayokun.bookscout.activities;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.agrawalsuneet.loaderspack.loaders.SearchLoader;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -40,12 +44,14 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue queue;
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
+    private SearchLoader searchLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         queue = Volley.newRequestQueue(this);
+        searchLoader = (SearchLoader) findViewById(R.id.searchStuff);
 
         recyclerView = (RecyclerView) findViewById(R.id.RecyclerViewID);
         recyclerView.setHasFixedSize(true);
@@ -99,22 +105,30 @@ public class MainActivity extends AppCompatActivity {
                 }
                 alertDialog.dismiss();
 
+
             }
         });
 
 
     }
 
+
     public List<Book> getBookList(String searchItem) {
+
 
         //clear the book list
         bookList.clear();
+
+        //Make Search Loader visible
+        searchLoader.setVisibility(View.VISIBLE);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 Constants.LEFT_BASE_URL + searchItem.trim() + Constants.RIGHT_BASE_URL,
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+
+                searchLoader.setVisibility(View.GONE);
 
                 try {
                     JSONArray bookArray = response.getJSONArray("docs");
@@ -175,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
     private static String getAuthors(JSONObject jsonObject) {
 
         try {
-
             if (jsonObject.has("author_name")) {
 
                 JSONArray authors = jsonObject.getJSONArray("author_name");
@@ -198,6 +211,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
 
 
 }

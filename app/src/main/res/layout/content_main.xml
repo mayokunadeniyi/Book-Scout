@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,12 +9,45 @@
     tools:context="com.mayokun.bookscout.activities.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/RecyclerViewID"
+
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/RecyclerViewID"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.agrawalsuneet.loaderspack.loaders.SearchLoader
+                android:id="@+id/searchStuff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="1dp"
+                android:gravity="center"
+                app:search_defaultStartLoading="true"
+                app:search_lensBorderWidth="6dp"
+                app:search_lensColor="#2196F3"
+                app:search_lensHandleLength="60dp"
+                app:search_lensRadius="40dp"
+                app:search_xRangeToSearch="150dp"
+                app:search_yRangeToSearch="150dp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="135dp"
+                tools:layout_editor_absoluteY="267dp" />
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

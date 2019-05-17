@@ -24,5 +24,4 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_menu_search" />
-
 </android.support.design.widget.CoordinatorLayout>
