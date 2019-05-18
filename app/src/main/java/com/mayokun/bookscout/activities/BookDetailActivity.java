@@ -7,10 +7,9 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,12 +30,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import model.Book;
 import utils.Constants;
+import utils.Prefs;
 
 public class BookDetailActivity extends AppCompatActivity {
     private Book book;
@@ -65,6 +64,7 @@ public class BookDetailActivity extends AppCompatActivity {
         bookPublisher = (TextView) findViewById(R.id.publishedByID);
         bookPages = (TextView) findViewById(R.id.pagesID);
 
+
         //Floating Action buttons
         shareButton = (FloatingActionButton) findViewById(R.id.shareID);
         viewButton = (FloatingActionButton) findViewById(R.id.viewID);
@@ -73,6 +73,13 @@ public class BookDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 shareIntent();
+            }
+        });
+
+        viewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewIntent(book.getBookIMDB());
             }
         });
 
@@ -184,6 +191,12 @@ public class BookDetailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return bmpUri;
+    }
+
+    public void viewIntent(final String id){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(Constants.BASE_LEFT_URL + id));
+        startActivity(intent);
     }
 
 

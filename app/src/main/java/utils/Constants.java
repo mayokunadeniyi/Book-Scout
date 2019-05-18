@@ -5,5 +5,7 @@ public class Constants {
     public static final String RIGHT_BASE_URL = "&limit=20";
     public static final String BASE_LEFT_URL = "http://openlibrary.org/books/";
     public static final String BASE_RIGHT_URL = ".json";
-    public static final String LEFT_DOWNLOAD_URL = "http://openlibrary.org/api/volumes/brief/";
+
+
+
 }

@@ -123,14 +123,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        waitingText.setText("Loading previous search...");
-//        waitingText.setVisibility(View.VISIBLE);
-//
-//    }
-
     public void createPopUp() {
         builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.popup, null);
@@ -211,6 +203,10 @@ public class MainActivity extends AppCompatActivity {
                         } else if (bookObj.has("edition_key")) {
                             JSONArray bookImdbArray = bookObj.getJSONArray("edition_key");
                             book.setBookIMDB(bookImdbArray.getString(0));
+                        }
+                        if (bookObj.has("isbn")){
+                            JSONArray bookIsbn = bookObj.getJSONArray("isbn");
+                            book.setIsbn(bookIsbn.getString(0));
                         }
 
                         bookList.add(book);
