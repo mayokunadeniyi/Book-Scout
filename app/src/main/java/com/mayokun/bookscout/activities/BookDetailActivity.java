@@ -46,6 +46,7 @@ public class BookDetailActivity extends AppCompatActivity {
     private TextView bookPublisher;
     private TextView bookPages;
 
+
     private RequestQueue queue;
 
 
@@ -99,6 +100,8 @@ public class BookDetailActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+
 
     public void getBookDetails(String id) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,

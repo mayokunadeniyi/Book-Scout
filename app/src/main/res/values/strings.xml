@@ -15,5 +15,6 @@
     <string name="parse_error">Error parsing your request. Try again.</string>
     <string name="server_error">Server Error. Check your connection and try again.</string>
     <string name="waiting_string">Waiting for Network...</string>
+    <string name="searching">Searching...</string>
 
 </resources>

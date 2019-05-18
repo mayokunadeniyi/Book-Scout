@@ -1,22 +1,17 @@
 package com.mayokun.bookscout.activities;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +27,6 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.mayokun.bookscout.R;
@@ -129,13 +123,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        waitingText.setText("Loading previous search...");
-        waitingText.setVisibility(View.VISIBLE);
-
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        waitingText.setText("Loading previous search...");
+//        waitingText.setVisibility(View.VISIBLE);
+//
+//    }
 
     public void createPopUp() {
         builder = new AlertDialog.Builder(this);
@@ -176,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Make Search Loader visible
         searchLoader.setVisibility(View.VISIBLE);
+        waitingText.setText(getString(R.string.searching));
+        waitingText.setVisibility(View.VISIBLE);
 
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 Constants.LEFT_BASE_URL + searchItem.trim() + Constants.RIGHT_BASE_URL,
