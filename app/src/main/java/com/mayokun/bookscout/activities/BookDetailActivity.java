@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.mayokun.bookscout.R;
 import com.squareup.picasso.Picasso;
 
@@ -45,6 +45,8 @@ public class BookDetailActivity extends AppCompatActivity {
     private TextView bookAuthor;
     private TextView bookPublisher;
     private TextView bookPages;
+    private FloatingActionButton shareButton;
+    private FloatingActionButton viewButton;
 
 
     private RequestQueue queue;
@@ -62,6 +64,18 @@ public class BookDetailActivity extends AppCompatActivity {
         bookAuthor = (TextView) findViewById(R.id.authorID);
         bookPublisher = (TextView) findViewById(R.id.publishedByID);
         bookPages = (TextView) findViewById(R.id.pagesID);
+
+        //Floating Action buttons
+        shareButton = (FloatingActionButton) findViewById(R.id.shareID);
+        viewButton = (FloatingActionButton) findViewById(R.id.viewID);
+
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareIntent();
+            }
+        });
+
 
         //Get the Book intent
         book = (Book) getIntent().getSerializableExtra("Book");
@@ -82,26 +96,8 @@ public class BookDetailActivity extends AppCompatActivity {
         getBookDetails(bookID);
 
 
-        //Share FAB
-//        FloatingActionButton shareFab = findViewById(R.id.shareID);
-//        shareFab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                shareIntent();
-//            }
-//        });
-//
-//        //View FAB
-//        FloatingActionButton viewFab = findViewById(R.id.viewID);
-//        viewFab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+
     }
-
-
 
     public void getBookDetails(String id) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
@@ -160,7 +156,7 @@ public class BookDetailActivity extends AppCompatActivity {
         shareIntent.setType("*/*");
         shareIntent.putExtra(Intent.EXTRA_TEXT, (String) shareTitle.getText());
         shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-        //Launc share menu
+        //Launch share menu
         startActivity(Intent.createChooser(shareIntent, "Share Image"));
     }
 
