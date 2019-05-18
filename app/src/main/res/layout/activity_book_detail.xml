@@ -11,39 +11,50 @@
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/AppTheme.AppBarOverlay">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="#FFF"
+            android:textSize="18sp" />
+
 
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_book_detail" />
 
-<com.getbase.floatingactionbutton.FloatingActionsMenu
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:layout_gravity="bottom|end"
-    app:fab_addButtonColorNormal="#5f4339"
-    app:fab_addButtonColorPressed="#744F43"
-    app:fab_addButtonPlusIconColor="#fff">
-    <com.getbase.floatingactionbutton.FloatingActionButton
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:fab_colorNormal="#FFFFFF"
-        style="@style/custom_fab"
-        app:fab_colorPressed="@color/white_pressed"
-        app:fab_size="normal"
-        android:id="@+id/shareID"
-        app:fab_title="Share"
-        app:fab_icon="@drawable/ic_share_white_24dp"/>
-    <com.getbase.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/custom_fab"
-        app:fab_colorNormal="#FFFFFF"
-        app:fab_colorPressed="@color/white_pressed"
-        app:fab_size="normal"
-        android:id="@+id/viewID"
-        app:fab_title="View"
-        app:fab_icon="@drawable/ic_visibility_white_24dp"/>
-</com.getbase.floatingactionbutton.FloatingActionsMenu>
+        android:layout_gravity="bottom|end"
+        app:fab_addButtonColorNormal="#5f4339"
+        app:fab_addButtonColorPressed="#744F43"
+        app:fab_addButtonPlusIconColor="#fff">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/shareID"
+            style="@style/custom_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#FFFFFF"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/ic_share_white_24dp"
+            app:fab_size="normal"
+            app:fab_title="Share" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/viewID"
+            style="@style/custom_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#FFFFFF"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/ic_visibility_white_24dp"
+            app:fab_size="normal"
+            app:fab_title="View" />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 
 </android.support.design.widget.CoordinatorLayout>

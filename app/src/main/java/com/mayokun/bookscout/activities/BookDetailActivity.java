@@ -194,8 +194,8 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     public void viewIntent(final String id){
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(Constants.BASE_LEFT_URL + id));
+        Intent intent = new Intent(BookDetailActivity.this,ViewActivity.class);
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 

@@ -7,5 +7,4 @@ public class Constants {
     public static final String BASE_RIGHT_URL = ".json";
 
 
-
 }
