@@ -14,4 +14,5 @@
     <string name="networkError">Network Error. Check your connection and try again.</string>
     <string name="parse_error">Error parsing your request. Try again.</string>
     <string name="server_error">Server Error. Check your connection and try again.</string>
+    <string name="waiting">Waiting for Network...</string>
 </resources>

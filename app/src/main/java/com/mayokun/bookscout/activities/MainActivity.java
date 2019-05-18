@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
     private SearchLoader searchLoader;
+    private TextView waitingText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         queue = Volley.newRequestQueue(this);
         searchLoader = (SearchLoader) findViewById(R.id.searchStuff);
+        waitingText = (TextView) findViewById(R.id.waitingID);
 
         recyclerView = (RecyclerView) findViewById(R.id.RecyclerViewID);
         recyclerView.setHasFixedSize(true);
@@ -85,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                searchLoader.setVisibility(View.GONE);
+                waitingText.setVisibility(View.GONE);
                 createPopUp();
 
             }
@@ -262,6 +266,8 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
+            waitingText.setVisibility(View.VISIBLE);
+            searchLoader.setVisibility(View.GONE);
         } else if (volleyError instanceof NetworkError) {
             builder = new AlertDialog.Builder(this);
             View view = getLayoutInflater().inflate(R.layout.error_popup, null);
@@ -271,6 +277,8 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
+            waitingText.setVisibility(View.VISIBLE);
+            searchLoader.setVisibility(View.GONE);
         } else if (volleyError instanceof ParseError) {
             builder = new AlertDialog.Builder(this);
             View view = getLayoutInflater().inflate(R.layout.error_popup, null);
@@ -280,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
+            searchLoader.setVisibility(View.GONE);
         } else if (volleyError instanceof ServerError) {
             builder = new AlertDialog.Builder(this);
             View view = getLayoutInflater().inflate(R.layout.error_popup, null);
@@ -289,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
+            searchLoader.setVisibility(View.GONE);
         }
 
     }
