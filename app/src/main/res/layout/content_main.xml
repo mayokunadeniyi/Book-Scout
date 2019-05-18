@@ -56,7 +56,7 @@
                 android:fontFamily="sans-serif"
                 android:visibility="gone"
                 android:gravity="center"
-                android:text="@string/waiting"
+                android:text="@string/waiting_string"
                 android:textSize="25sp"
                 android:textStyle="bold" />
         </android.support.v7.widget.CardView>

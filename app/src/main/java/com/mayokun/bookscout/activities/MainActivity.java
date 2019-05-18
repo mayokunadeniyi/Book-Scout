@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -127,6 +129,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        waitingText.setText("Loading previous search...");
+        waitingText.setVisibility(View.VISIBLE);
+
+    }
+
     public void createPopUp() {
         builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.popup, null);
@@ -149,8 +159,11 @@ public class MainActivity extends AppCompatActivity {
                     bookList.clear();
                     //get new book list
                     getBookList(searchItem.getText().toString());
+                    alertDialog.dismiss();
+                }else if (searchItem.getText().toString().isEmpty()){
+                    Snackbar.make(v,"Search request is empty!",Snackbar.LENGTH_LONG).show();
                 }
-                alertDialog.dismiss();
+
             }
         });
     }
@@ -171,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
 
                 searchLoader.setVisibility(View.GONE);
+                waitingText.setVisibility(View.GONE);
 
                 try {
                     JSONArray bookArray = response.getJSONArray("docs");
@@ -266,6 +280,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
+            waitingText.setText(getString(R.string.waiting_string));
             waitingText.setVisibility(View.VISIBLE);
             searchLoader.setVisibility(View.GONE);
         } else if (volleyError instanceof NetworkError) {
@@ -277,6 +292,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
+            waitingText.setText(getString(R.string.waiting_string));
             waitingText.setVisibility(View.VISIBLE);
             searchLoader.setVisibility(View.GONE);
         } else if (volleyError instanceof ParseError) {
