@@ -25,6 +25,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/RecyclerViewID"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,11 +41,11 @@
                 android:gravity="center"
                 app:search_defaultStartLoading="true"
                 app:search_lensBorderWidth="6dp"
-                app:search_lensColor="#2196F3"
+                app:search_lensColor="#5f4339"
                 app:search_lensHandleLength="60dp"
                 app:search_lensRadius="40dp"
                 app:search_xRangeToSearch="350dp"
-                app:search_yRangeToSearch="350dp"
+                app:search_yRangeToSearch="500dp"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="135dp"
                 tools:layout_editor_absoluteY="267dp" />

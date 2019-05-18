@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Disable searchloader
             searchLoader.setVisibility(View.GONE);
+            waitingText.setVisibility(View.GONE);
             new MaterialTapTargetPrompt.Builder(MainActivity.this)
                     .setTarget(R.id.fab)
                     .setFocalColour(Color.parseColor("#ffffff"))
