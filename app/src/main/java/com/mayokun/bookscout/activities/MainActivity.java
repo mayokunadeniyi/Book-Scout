@@ -240,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
     //Error methods for Volley request
     private void handleVolleyError(VolleyError volleyError) {
 
+
     }
 
 
