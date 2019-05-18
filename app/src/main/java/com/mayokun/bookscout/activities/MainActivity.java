@@ -2,7 +2,11 @@ package com.mayokun.bookscout.activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -34,6 +38,7 @@ import java.util.List;
 
 import adapter.BookRecyclerViewAdapter;
 import model.Book;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import utils.Constants;
 import utils.Prefs;
 
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(bookRecyclerViewAdapter);
         bookRecyclerViewAdapter.notifyDataSetChanged();
 
-
+        //Search Floating action button
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +83,32 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        //Focus design for search floating action button
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!preferences.getBoolean("FirstTime", false)) {
+            new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                    .setTarget(R.id.fab)
+                    .setFocalColour(Color.parseColor("#ffffff"))
+                    .setPrimaryText("Make your first search!")
+                    .setBackgroundColour(Color.parseColor("#5f4339"))
+                    .setSecondaryText("Tap the search icon to get started with Book Scout")
+                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
+                        @Override
+                        public void onPromptStateChanged(@NonNull MaterialTapTargetPrompt prompt, int state) {
+                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
+                                createPopUp();
+                            }
+
+                        }
+                    }).show();
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("FirstTime", true);
+            editor.commit();
+
+        }
     }
 
     public void createPopUp() {
@@ -104,14 +135,9 @@ public class MainActivity extends AppCompatActivity {
                     getBookList(searchItem.getText().toString());
                 }
                 alertDialog.dismiss();
-
-
             }
         });
-
-
     }
-
 
     public List<Book> getBookList(String searchItem) {
 
@@ -182,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
 
         return bookList;
 
-
     }
 
     //This method is to get the authors
@@ -201,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                     authorStrings[i] = authors.getString(i);
                 }
                 return TextUtils.join(",", authorStrings);
-            }else {
+            } else {
                 return "N/A";
             }
 
@@ -212,7 +237,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Error methods for Volley request
+    private void handleVolleyError(VolleyError volleyError) {
 
+    }
 
 
 }

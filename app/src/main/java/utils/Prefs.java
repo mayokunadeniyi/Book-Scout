@@ -19,4 +19,13 @@ public class Prefs {
     public String getSearch(){
         return sharedPreferences.getString("search","Harry Potter");
     }
+
+    public void setStart(Boolean value){
+        sharedPreferences.edit().putBoolean("FirstTime",value).commit();
+    }
+
+    public boolean getStart(){
+        return sharedPreferences.getBoolean("FirstTime",true);
+    }
+
 }
