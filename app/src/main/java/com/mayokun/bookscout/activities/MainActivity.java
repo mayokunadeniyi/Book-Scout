@@ -18,11 +18,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.agrawalsuneet.loaderspack.loaders.SearchLoader;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -200,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("Error", error.getMessage());
+              handleVolleyError(error);
             }
         });
 
@@ -240,6 +246,43 @@ public class MainActivity extends AppCompatActivity {
     //Error methods for Volley request
     private void handleVolleyError(VolleyError volleyError) {
 
+        if (volleyError instanceof TimeoutError || volleyError instanceof NoConnectionError){
+            builder = new AlertDialog.Builder(this);
+            View view = getLayoutInflater().inflate(R.layout.error_popup,null);
+
+            TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
+            errorText.setText(getString(R.string.network_error));
+            builder.setView(view);
+            alertDialog = builder.create();
+            alertDialog.show();
+        }else if (volleyError instanceof NetworkError){
+            builder = new AlertDialog.Builder(this);
+            View view = getLayoutInflater().inflate(R.layout.error_popup,null);
+
+            TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
+            errorText.setText(getString(R.string.networkError));
+            builder.setView(view);
+            alertDialog = builder.create();
+            alertDialog.show();
+        }else if (volleyError instanceof ParseError){
+            builder = new AlertDialog.Builder(this);
+            View view = getLayoutInflater().inflate(R.layout.error_popup,null);
+
+            TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
+            errorText.setText(getString(R.string.parse_error));
+            builder.setView(view);
+            alertDialog = builder.create();
+            alertDialog.show();
+        }else if (volleyError instanceof ServerError){
+            builder = new AlertDialog.Builder(this);
+            View view = getLayoutInflater().inflate(R.layout.error_popup,null);
+
+            TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
+            errorText.setText(getString(R.string.server_error));
+            builder.setView(view);
+            alertDialog = builder.create();
+            alertDialog.show();
+        }
 
     }
 

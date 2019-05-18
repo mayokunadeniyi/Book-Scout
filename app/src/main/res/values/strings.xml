@@ -10,4 +10,8 @@
     <string name="pages_na">Pages N/A</string>
     <string name="author">Author: </string>
     <string name="whoops">Whoops!</string>
+    <string name="network_error">No Internet Connection found. Check your connection and try again.</string>
+    <string name="networkError">Network Error. Check your connection and try again.</string>
+    <string name="parse_error">Error parsing your request. Try again.</string>
+    <string name="server_error">Server Error. Check your connection and try again.</string>
 </resources>
