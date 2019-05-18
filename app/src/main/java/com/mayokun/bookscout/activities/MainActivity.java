@@ -94,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
         //Focus design for search floating action button
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (!preferences.getBoolean("FirstTime", false)) {
+
+            //Cancel volley request from shared preference
+            queue.cancelAll("DOCS");
+
+            //Disable searchloader
+            searchLoader.setVisibility(View.GONE);
             new MaterialTapTargetPrompt.Builder(MainActivity.this)
                     .setTarget(R.id.fab)
                     .setFocalColour(Color.parseColor("#ffffff"))
@@ -154,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         //Make Search Loader visible
         searchLoader.setVisibility(View.VISIBLE);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 Constants.LEFT_BASE_URL + searchItem.trim() + Constants.RIGHT_BASE_URL,
                 null, new Response.Listener<JSONObject>() {
             @Override
@@ -206,11 +212,12 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-              handleVolleyError(error);
+                handleVolleyError(error);
             }
         });
 
         queue.add(jsonObjectRequest);
+        jsonObjectRequest.setTag("DOCS");
 
         return bookList;
 
@@ -246,36 +253,36 @@ public class MainActivity extends AppCompatActivity {
     //Error methods for Volley request
     private void handleVolleyError(VolleyError volleyError) {
 
-        if (volleyError instanceof TimeoutError || volleyError instanceof NoConnectionError){
+        if (volleyError instanceof TimeoutError || volleyError instanceof NoConnectionError) {
             builder = new AlertDialog.Builder(this);
-            View view = getLayoutInflater().inflate(R.layout.error_popup,null);
+            View view = getLayoutInflater().inflate(R.layout.error_popup, null);
 
             TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
             errorText.setText(getString(R.string.network_error));
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
-        }else if (volleyError instanceof NetworkError){
+        } else if (volleyError instanceof NetworkError) {
             builder = new AlertDialog.Builder(this);
-            View view = getLayoutInflater().inflate(R.layout.error_popup,null);
+            View view = getLayoutInflater().inflate(R.layout.error_popup, null);
 
             TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
             errorText.setText(getString(R.string.networkError));
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
-        }else if (volleyError instanceof ParseError){
+        } else if (volleyError instanceof ParseError) {
             builder = new AlertDialog.Builder(this);
-            View view = getLayoutInflater().inflate(R.layout.error_popup,null);
+            View view = getLayoutInflater().inflate(R.layout.error_popup, null);
 
             TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
             errorText.setText(getString(R.string.parse_error));
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
-        }else if (volleyError instanceof ServerError){
+        } else if (volleyError instanceof ServerError) {
             builder = new AlertDialog.Builder(this);
-            View view = getLayoutInflater().inflate(R.layout.error_popup,null);
+            View view = getLayoutInflater().inflate(R.layout.error_popup, null);
 
             TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
             errorText.setText(getString(R.string.server_error));
