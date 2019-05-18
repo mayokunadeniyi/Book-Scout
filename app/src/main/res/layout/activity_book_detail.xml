@@ -16,12 +16,34 @@
 
     <include layout="@layout/content_book_detail" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+<com.getbase.floatingactionbutton.FloatingActionsMenu
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_gravity="bottom|end"
+    app:fab_addButtonColorNormal="#5f4339"
+    app:fab_addButtonColorPressed="#744F43"
+    app:fab_addButtonPlusIconColor="#fff">
+    <com.getbase.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_share" />
+        app:fab_colorNormal="#FFFFFF"
+        style="@style/custom_fab"
+        app:fab_colorPressed="@color/white_pressed"
+        app:fab_size="normal"
+        android:id="@+id/shareID"
+        app:fab_title="Share"
+        app:fab_icon="@drawable/ic_share_white_24dp"/>
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/custom_fab"
+        app:fab_colorNormal="#FFFFFF"
+        app:fab_colorPressed="@color/white_pressed"
+        app:fab_size="normal"
+        android:id="@+id/viewID"
+        app:fab_title="View"
+        app:fab_icon="@drawable/ic_visibility_white_24dp"/>
+</com.getbase.floatingactionbutton.FloatingActionsMenu>
+
 
 </android.support.design.widget.CoordinatorLayout>

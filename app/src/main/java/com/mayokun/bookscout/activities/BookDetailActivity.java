@@ -81,13 +81,23 @@ public class BookDetailActivity extends AppCompatActivity {
         getBookDetails(bookID);
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shareIntent();
-            }
-        });
+        //Share FAB
+//        FloatingActionButton shareFab = findViewById(R.id.shareID);
+//        shareFab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                shareIntent();
+//            }
+//        });
+//
+//        //View FAB
+//        FloatingActionButton viewFab = findViewById(R.id.viewID);
+//        viewFab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
     }
 
     public void getBookDetails(String id) {
