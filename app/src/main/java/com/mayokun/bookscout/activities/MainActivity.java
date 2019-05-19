@@ -297,6 +297,8 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
+            waitingText.setText(getString(R.string.waiting_string));
+            waitingText.setVisibility(View.VISIBLE);
             searchLoader.setVisibility(View.GONE);
         } else if (volleyError instanceof ServerError) {
             builder = new AlertDialog.Builder(this);
@@ -307,6 +309,8 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(view);
             alertDialog = builder.create();
             alertDialog.show();
+            waitingText.setText(getString(R.string.waiting_string));
+            waitingText.setVisibility(View.VISIBLE);
             searchLoader.setVisibility(View.GONE);
         }
 

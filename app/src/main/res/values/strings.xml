@@ -12,8 +12,8 @@
     <string name="whoops">Whoops!</string>
     <string name="network_error">You don\'t seem to be connected to the Internet. Please check your connection and try again or exit and try later.</string>
     <string name="networkError">You don\'t seem to be connected to the Internet. Please check your connection and try again or exit and try later.</string>
-    <string name="parse_error">Error parsing your request. Try again.</string>
-    <string name="server_error">Server Error. Check your connection and try again.</string>
+    <string name="parse_error">You don\'t seem to be connected to the Internet. Please check your connection and try again or exit and try later.</string>
+    <string name="server_error">You don\'t seem to be connected to the Internet. Please check your connection and try again or exit and try later.</string>
     <string name="waiting_string">Waiting for Network...</string>
     <string name="searching">Searching...</string>
 

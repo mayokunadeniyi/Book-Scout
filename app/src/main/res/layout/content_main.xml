@@ -41,7 +41,7 @@
                 android:gravity="center"
                 app:search_defaultStartLoading="true"
                 app:search_lensBorderWidth="6dp"
-                app:search_lensColor="#5f4339"
+                app:search_lensColor="#856358"
                 app:search_lensHandleLength="60dp"
                 app:search_lensRadius="40dp"
                 app:search_xRangeToSearch="350dp"
@@ -58,6 +58,7 @@
                 android:fontFamily="sans-serif"
                 android:visibility="gone"
                 android:gravity="center"
+                android:textColor="#7E635B"
                 android:text="@string/waiting_string"
                 android:textSize="25sp"
                 android:textStyle="bold" />
