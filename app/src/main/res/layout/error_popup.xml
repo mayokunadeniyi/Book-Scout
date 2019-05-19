@@ -56,6 +56,15 @@
                         android:text="Error Message"
                         android:textAlignment="center"
                         android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/reloadBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_autorenew_black_24dp"
+                        />
                 </LinearLayout>
 
             </RelativeLayout>

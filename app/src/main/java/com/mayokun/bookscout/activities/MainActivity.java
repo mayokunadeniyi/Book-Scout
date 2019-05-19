@@ -269,6 +269,17 @@ public class MainActivity extends AppCompatActivity {
             View view = getLayoutInflater().inflate(R.layout.error_popup, null);
 
             TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
+            Button reloadButton = (Button) view.findViewById(R.id.reloadBtn);
+
+            reloadButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    Prefs prefs = new Prefs(MainActivity.this);
+                    getBookList(prefs.getSearch());
+                }
+            });
+
             errorText.setText(getString(R.string.network_error));
             builder.setView(view);
             alertDialog = builder.create();
@@ -281,6 +292,17 @@ public class MainActivity extends AppCompatActivity {
             View view = getLayoutInflater().inflate(R.layout.error_popup, null);
 
             TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
+            Button reloadButton = (Button) view.findViewById(R.id.reloadBtn);
+
+            reloadButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    Prefs prefs = new Prefs(MainActivity.this);
+                    getBookList(prefs.getSearch());
+                }
+            });
+
             errorText.setText(getString(R.string.networkError));
             builder.setView(view);
             alertDialog = builder.create();
@@ -293,6 +315,17 @@ public class MainActivity extends AppCompatActivity {
             View view = getLayoutInflater().inflate(R.layout.error_popup, null);
 
             TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
+            Button reloadButton = (Button) view.findViewById(R.id.reloadBtn);
+
+            reloadButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    Prefs prefs = new Prefs(MainActivity.this);
+                    getBookList(prefs.getSearch());
+                }
+            });
+
             errorText.setText(getString(R.string.parse_error));
             builder.setView(view);
             alertDialog = builder.create();
@@ -305,6 +338,17 @@ public class MainActivity extends AppCompatActivity {
             View view = getLayoutInflater().inflate(R.layout.error_popup, null);
 
             TextView errorText = (TextView) view.findViewById(R.id.errorMessageID);
+            Button reloadButton = (Button) view.findViewById(R.id.reloadBtn);
+
+            reloadButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    Prefs prefs = new Prefs(MainActivity.this);
+                    getBookList(prefs.getSearch());
+                }
+            });
+
             errorText.setText(getString(R.string.server_error));
             builder.setView(view);
             alertDialog = builder.create();
