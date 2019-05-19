@@ -2,9 +2,11 @@ package com.mayokun.bookscout.activities;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -29,6 +31,8 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.mayokun.bookscout.R;
 
 import org.json.JSONArray;
@@ -40,7 +44,6 @@ import java.util.List;
 
 import adapter.BookRecyclerViewAdapter;
 import model.Book;
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import utils.Constants;
 import utils.Prefs;
 
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private SearchLoader searchLoader;
     private TextView waitingText;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 waitingText.setVisibility(View.GONE);
                 createPopUp();
 
+
             }
         });
 
@@ -101,31 +106,32 @@ public class MainActivity extends AppCompatActivity {
             //Disable searchloader
             searchLoader.setVisibility(View.GONE);
             waitingText.setVisibility(View.GONE);
-            new MaterialTapTargetPrompt.Builder(MainActivity.this)
-                    .setTarget(R.id.fab)
-                    .setFocalColour(Color.parseColor("#ffffff"))
-                    .setPrimaryText("Make your first search!")
-                    .setBackgroundColour(Color.parseColor("#5f4339"))
-                    .setSecondaryText("Tap the search icon to get started with Book Scout")
-                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener() {
-                        @Override
-                        public void onPromptStateChanged(@NonNull MaterialTapTargetPrompt prompt, int state) {
-                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
-                                createPopUp();
-                            }
 
+            TapTargetView.showFor(this,
+                    TapTarget.forView(findViewById(R.id.fab), "Let\'s get Started!", "Tap on the search icon")
+                    .icon(getDrawable(R.drawable.ic_search_black_24dp))
+                    .cancelable(false)
+                    .drawShadow(true)
+                    .tintTarget(true)
+                    , new TapTargetView.Listener() {
+                        @Override
+                        public void onTargetClick(TapTargetView view) {
+                            super.onTargetClick(view);
+                            createPopUp();
                         }
-                    }).show();
+                    });
+
 
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("FirstTime", true);
-            editor.commit();
+            editor.apply();
+
 
         }
     }
 
     public void createPopUp() {
-        builder = new AlertDialog.Builder(this);
+        builder = new AlertDialog.Builder(MainActivity.this);
         View view = getLayoutInflater().inflate(R.layout.popup, null);
         final EditText searchItem = (EditText) view.findViewById(R.id.searchID);
         Button searchButton = (Button) view.findViewById(R.id.searchbuttonID);
@@ -140,19 +146,24 @@ public class MainActivity extends AppCompatActivity {
                 Prefs prefs = new Prefs(MainActivity.this);
 
                 if (!searchItem.getText().toString().isEmpty()) {
-
+                    alertDialog.dismiss();
                     prefs.setSearch(searchItem.getText().toString());
                     //Clear the book list
                     bookList.clear();
                     //get new book list
                     getBookList(searchItem.getText().toString());
-                    alertDialog.dismiss();
-                }else if (searchItem.getText().toString().isEmpty()){
-                    Snackbar.make(v,"Search request is empty!",Snackbar.LENGTH_LONG).show();
+
+                } else if (searchItem.getText().toString().isEmpty()) {
+                    Snackbar.make(v, "Search request is empty!", Snackbar.LENGTH_LONG).show();
                 }
+
 
             }
         });
+    }
+
+    public void firstPopup() {
+
     }
 
     public List<Book> getBookList(String searchItem) {
@@ -205,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray bookImdbArray = bookObj.getJSONArray("edition_key");
                             book.setBookIMDB(bookImdbArray.getString(0));
                         }
-                        if (bookObj.has("isbn")){
+                        if (bookObj.has("isbn")) {
                             JSONArray bookIsbn = bookObj.getJSONArray("isbn");
                             book.setIsbn(bookIsbn.getString(0));
                         }
