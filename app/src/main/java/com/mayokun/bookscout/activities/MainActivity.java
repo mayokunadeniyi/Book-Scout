@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             waitingText.setVisibility(View.GONE);
 
             TapTargetView.showFor(this,
-                    TapTarget.forView(findViewById(R.id.fab), "Let\'s get Started!", "Tap on the search icon")
+                    TapTarget.forView(findViewById(R.id.fab), "Hey there!", "Tap the search icon to get started with Book Scout.")
                     .icon(getDrawable(R.drawable.ic_search_black_24dp))
                     .cancelable(false)
                     .drawShadow(true)
