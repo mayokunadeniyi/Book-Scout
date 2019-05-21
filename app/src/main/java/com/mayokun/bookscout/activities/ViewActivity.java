@@ -31,6 +31,7 @@ public class ViewActivity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webViewID);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+        WebView.setWebContentsDebuggingEnabled(false);
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webView.getSettings().setAppCacheEnabled(true);
         webView.setVerticalScrollBarEnabled(false);
