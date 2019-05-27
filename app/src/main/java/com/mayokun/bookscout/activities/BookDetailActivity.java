@@ -5,8 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,6 +24,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.mayokun.bookscout.BuildConfig;
 import com.mayokun.bookscout.R;
 import com.squareup.picasso.Picasso;
 
@@ -185,7 +188,8 @@ public class BookDetailActivity extends AppCompatActivity {
             FileOutputStream outputStream = new FileOutputStream(file);
             bmp.compress(Bitmap.CompressFormat.PNG, 90, outputStream);
             outputStream.close();
-            bmpUri = Uri.fromFile(file);
+            bmpUri = FileProvider.getUriForFile(BookDetailActivity.this, BuildConfig.APPLICATION_ID +
+                    ".provider",file);
 
         } catch (IOException e) {
             e.printStackTrace();
