@@ -1,5 +1,4 @@
-![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg) ![PR](https://img.shields.io/github/license/mayokunthefirst/book-scout.svg) [![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-red.svg?style=flat)](http://makeapullrequest.com) ![release](https://img.shields.io/github/release/mayokunthefirst/book-scout.svg)
-# Book Scout
+# Book Scout    ![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg) ![PR](https://img.shields.io/github/license/mayokunthefirst/book-scout.svg) [![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-red.svg?style=flat)](http://makeapullrequest.com) ![release](https://img.shields.io/github/release/mayokunthefirst/book-scout.svg)
 <p align="center"><a href="https://github.com/mayokunthefirst/Shopping-List"><img src="https://user-images.githubusercontent.com/29807085/57989137-5d410e00-7a8e-11e9-8f29-430b8a7b57d2.png" width="150"></a></p> 
 
 
