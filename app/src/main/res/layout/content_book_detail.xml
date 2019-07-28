@@ -38,7 +38,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center"
                 android:textSize="32sp"
-                android:fontFamily="sans-serif"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:gravity="center"
@@ -51,7 +50,6 @@
                 android:layout_marginTop="8dp"
                 android:textSize="22sp"
                 android:gravity="center"
-                android:fontFamily="sans-serif-light"
                 android:layout_gravity="center"
                 android:text="TextView" />
 
@@ -69,7 +67,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:text="@string/published_by"
                 android:textSize="14sp" />
@@ -80,7 +77,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:text="@string/publisher_na"
                 android:textSize="14sp" />
@@ -91,7 +87,6 @@
                 android:layout_gravity="center"
                 android:textSize="14sp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-light"
                 android:layout_height="wrap_content"
                 android:text="@string/pages_na" />
         </LinearLayout>

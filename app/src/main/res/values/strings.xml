@@ -16,5 +16,8 @@
     <string name="server_error">You don\'t seem to be connected to the Internet. Please check your connection and try again or exit and try later.</string>
     <string name="waiting_string">Waiting for Network...</string>
     <string name="searching">Searching...</string>
+    <string name="error_message">Error Message</string>
+    <string name="book_title">Book Title</string>
+    <string name="author_name">Author Name</string>
 
 </resources>

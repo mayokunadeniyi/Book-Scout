@@ -2,6 +2,7 @@ package com.mayokun.bookscout.activities;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -107,12 +108,17 @@ public class MainActivity extends AppCompatActivity {
             searchLoader.setVisibility(View.GONE);
             waitingText.setVisibility(View.GONE);
 
+            Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/googlesans.ttf");
+
             TapTargetView.showFor(this,
                     TapTarget.forView(findViewById(R.id.fab), "Hey there!", "Tap the search icon to get started with Book Scout.")
                     .icon(getDrawable(R.drawable.ic_search_black_24dp))
                     .cancelable(false)
                     .drawShadow(true)
                     .tintTarget(true)
+                    .textTypeface(typeface)
+                    .descriptionTypeface(typeface)
+                    .titleTypeface(typeface)
                     , new TapTargetView.Listener() {
                         @Override
                         public void onTargetClick(TapTargetView view) {

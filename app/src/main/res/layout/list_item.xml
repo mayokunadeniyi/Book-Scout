@@ -32,10 +32,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:fontFamily="sans-serif-light"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/bookImageID"
-                android:text="Book Title"
+                android:text="@string/book_title"
                 android:textSize="15sp"
                 android:textStyle="bold" />
             <LinearLayout
@@ -50,17 +49,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/author"/>
                 <TextView
                     android:id="@+id/bookAuthor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:fontFamily="sans-serif-light"
                     android:textSize="12sp"
                     android:layout_centerHorizontal="true"
-                    android:text="Author Name"
+                    android:text="@string/author_name"
                     />
 
             </LinearLayout>
