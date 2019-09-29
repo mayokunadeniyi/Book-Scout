@@ -3,7 +3,7 @@
 
 
 ## Project Overview
-An Android based application that allows the user to search for their favourite books using the book name or the author's name. The application also allows the user to share the book's image and name with others and also read the book over the [Open Library](https://openlibrary.org/).
+An Android based application that allows the user to search for their favourite books using the book's name or the author's name. The application also allows the user to share the book's image and name with others and also read the book over the [Open Library](https://openlibrary.org/).
 
 
 ## Screenshots
